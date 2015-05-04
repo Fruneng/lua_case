@@ -1,6 +1,6 @@
 
 CC=gcc
-OBJECT= main.o dmo_dateTime.o dmo_add.o dmo_average.o 
+OBJECT= main.o dmo_datetime.o dmo_add.o dmo_average.o 
 
 
 INCLUDE = 
@@ -18,8 +18,8 @@ TestMain: $(OBJECT)
 main.o:main.cpp
 	$(CC) $(WALL) -c main.cpp $(INCLUDE)
 	
-dmo_dateTime.o:dmo_dateTime.cpp dmo_dateTime.h
-	$(CC) $(WALL) -c dmo_dateTime.cpp $(INCLUDE)
+dmo_datetime.o:dmo_datetime.cpp dmo_datetime.h
+	$(CC) $(WALL) -c dmo_datetime.cpp $(INCLUDE)
 
 dmo_add.o:dmo_add.cpp dmo_add.h
 	$(CC) $(WALL) -c dmo_add.cpp $(INCLUDE)
