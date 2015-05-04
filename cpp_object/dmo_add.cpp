@@ -1,6 +1,6 @@
 #include"dmo_add.h"
 #include"lua_extern.hpp"
-static char strLuaFilePath[] = "./rule_lua/add.lua";
+static char script_path[] = "./rule_lua/add.lua";
 
 
 //c++ function call Lua function add
@@ -18,7 +18,7 @@ int lua_add(lua_State* L,int x,int y)
 	lua_pushnumber(L,y);
 
 	/* call the function with 2
-  arguments, return 1 result */
+    arguments, return 1 result */
 	lua_call(L,2,1);
 
 	/* get the result */
@@ -26,7 +26,8 @@ int lua_add(lua_State* L,int x,int y)
 
 	lua_pop(L,1);
 	
-	const int n = lua_gettop(L);
+	// const int n = 
+    lua_gettop(L);
 	//printf("lua_add for Test,the value of Top In LuaState is [%d]\n ",n);
 
 	return sum;
@@ -54,7 +55,7 @@ void Test_add_lua(int x,int y)
  	 *more details,please read 
  	 *http://www.codingnow.com/2000/download/lua_manual.html
    */
-  ret = luaL_loadfile(L,strLuaFilePath);
+  ret = luaL_loadfile(L,script_path);
   if(LUA_ERRFILE == ret)
   	{
   		printf("fail to load lua file\n");	

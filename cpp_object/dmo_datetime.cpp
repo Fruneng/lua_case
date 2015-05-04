@@ -1,12 +1,14 @@
-#include <string.h>
-#include <errno.h>
+#include <iostream>
+#include <cstring>
+#include <assert.h>
 #include "dmo_datetime.h"
-static char strLuaFilePath[] = "./rule_lua/dateTime.lua";
+static char script_path[] = "./rule_lua/datetime.lua";
 
-int datetime (lua_State *L)
+
+int datetime(lua_State *L)
 {    
-  CBSDateTime* pDateTime = (CBSDateTime*)lua_newuserdata(L, sizeof(CBSDateTime));
-  new (pDateTime) CBSDateTime();
+  void* mem = lua_newuserdata(L, sizeof(CBSDateTime));
+  new(mem) CBSDateTime();
 
   luaL_getmetatable(L, "datetime");
   lua_setmetatable(L, -2);
@@ -41,6 +43,7 @@ int datetime_classname(lua_State* L)
 int datetime_index(lua_State* L)
 {
   CBSDateTime* pDateTime = (CBSDateTime*)luaL_checkudata(L, 1, "datetime");
+  assert(pDateTime);
   const char* __index = lua_tostring(L, 2);
   if (strcmp(__index, "classname") == 0)
   {
@@ -77,28 +80,29 @@ void register_datetime_func(lua_State *L)
 
 int Test_dateTime()
 {
-	  lua_State * L = luaL_newstate() ;       
+    lua_State * L = luaL_newstate() ;       
     if ( L == NULL ) 
-    	{
+    {
         err_return(-1,"luaL_newstat() failed"); 
-      }
+    }
       
     luaL_openlibs(L);
     int ret = 0 ;
    
     register_datetime_func(L);
 
-    ret = luaL_loadfile(L,strLuaFilePath) ;      
+    ret = luaL_loadfile(L,script_path) ;      
     if ( ret != 0 ) 
-    	{
+    {
         err_return(-1,"luaL_loadfile failed") ;
-      }
+    }
     
     ret = lua_pcall(L,0,0,0) ;
     if ( ret != 0 ) 
-    	{
+    {
         err_return(-1,"lua_pcall failed:%s",lua_tostring(L,-1)) ;
-      }
+    }
 
-    lua_close(L);   	
+    lua_close(L); 
+    return 0;
 }

@@ -1,6 +1,6 @@
-#include"dmo_average.h"
+#include "dmo_average.h"
 
-static char strfilePath[] = "./rule_lua/average.lua";
+static char script_path[] = "./rule_lua/average.lua";
 
 int Lua_average(lua_State *L)
 {
@@ -54,7 +54,7 @@ void test_average()
 	 *Loads and runs the given file. It is defined as the following macro:
 	 *(luaL_loadfile(L, filename) || lua_pcall(L, 0, LUA_MULTRET, 0))
 	 */
-	luaL_dofile(L, strfilePath);
+	luaL_dofile(L, script_path);
 	
 	/* cleanup Lua */
 	lua_close(L);

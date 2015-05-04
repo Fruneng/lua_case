@@ -1,8 +1,7 @@
-#ifndef DMO_DATETIME_HHHH
-#define DMO_DATETIME_HHHH
-#include<stdio.h>
-#include"lua_extern.hpp"
-
+#ifndef DMO_DATETIME_H
+#define DMO_DATETIME_H
+#include <stdio.h>
+#include "lua_extern.hpp"
 
 class CBSDateTime{
 public:
@@ -16,9 +15,7 @@ public:
   }
 };
 
-
-
-int datetime (lua_State *L);
+int datetime(lua_State *L);
 int datetime_gc(lua_State* L);
 int datetime_check(lua_State* L);
 int datetime_classname(lua_State* L);
