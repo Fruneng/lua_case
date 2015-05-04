@@ -6,7 +6,7 @@ static char strLuaFilePath[] = "./rule_lua/dateTime.lua";
 int datetime (lua_State *L)
 {    
   CBSDateTime* pDateTime = (CBSDateTime*)lua_newuserdata(L, sizeof(CBSDateTime));
- // new (pDateTime) CBSDateTime();
+  new (pDateTime) CBSDateTime();
 
   luaL_getmetatable(L, "datetime");
   lua_setmetatable(L, -2);
