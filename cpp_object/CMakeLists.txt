@@ -12,3 +12,5 @@ add_executable(test ${SRC_LIST})
 target_link_libraries(test lua stdc++)
 
 set(EXECUTABLE_OUTPUT_PATH ../)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -g -Wall -Wno-unused-variable -pthread")
